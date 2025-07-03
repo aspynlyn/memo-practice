@@ -24,13 +24,21 @@ onMounted(() => {
 // 화면이 그려질때 가지고 온 정보가 있으면 그걸 띄우게 함
 
 const procSubmit = async () => {
+  let data = null;
+  let path = '/'
   const jsonBody = {
     title: state.memo.title,
     content: state.memo.content,
   };
-  const data = await httpService.save(jsonBody);
+  if (state.memo.id) {
+    jsonBody.id = state.memo.id;
+    path = `/memos/${state.memo.id}`;
+    data = await httpService.modify(jsonBody);
+  } else {
+    data = await httpService.save(jsonBody);
+  }
   if (data.resultData === 1) {
-    router.push({ path: '/' });
+    router.push({ path });
   } else {
     alert(data.resultMessage);
   }

@@ -21,7 +21,7 @@ onMounted(async () => {
 });
 
 const moveToForm = () => {
-  const json = JSON.stringify(state.memo); // 객체를 json으로
+  const json = JSON.stringify(state.memo); // 객체를 json으로(직렬화 작업)
 
   router.push({
     path: '/memo/add',
@@ -29,6 +29,7 @@ const moveToForm = () => {
       data: json,
     },
   });
+  // path와 state는 속성임 이름 변경 X data는 문자열 형태(json, xml등)로 
 };
 </script>
 

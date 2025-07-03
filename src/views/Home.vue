@@ -25,6 +25,18 @@ const search = () => {
   };
   findAll(params);
 };
+
+const remove = async (id) => {
+  if (!confirm('삭제하실?')) {
+    return;
+  } else if (confirm('삭제하실?')) {
+    const params = { id };
+    const data = await httpService.deleteById(params);
+    if (data.resultData === 1) {
+      search();
+    }
+  }
+};
 </script>
 
 <template>

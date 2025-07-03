@@ -12,13 +12,23 @@ class HttpService {
 
   // findAll메소드 구현
   async findAll(params) {
-    const res = await axios.get('/memo', {params});
+    const res = await axios.get('/memo', { params });
     // get메소드는 두번째 인자로 객체를 보내는데 params 속성에 객체를 넣어주면 알아서 쿼리스트링으로 만들어서 보냄
     return res.data;
   }
 
-  async findById(id){
-    const res = await axios.get(`/memo/${id}`)
+  async findById(id) {
+    const res = await axios.get(`/memo/${id}`);
+    return res.data;
+  }
+
+  async modify(jsonBody) {
+    const res = await axios.put('/memo', jsonBody);
+    return res.data;
+  }
+
+  async deleteById(params) {
+    const res = await axios.delete(`/memo`, { params });
     return res.data;
   }
 }
